@@ -1,0 +1,5 @@
+= git_basepath
+
+Description goes here
+
+Setting.plugin_redmine_scm_basepath = {:git_path => '/usr/share/redmine/vendor/plugins/redmine_scm_basepath' }
