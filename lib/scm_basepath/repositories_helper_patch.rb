@@ -14,8 +14,10 @@ module ScmBasepath
       def repository_field_tags_with_scm_basepath(form, repository)
         tags = repository_field_tags_without_scm_basepath(form, repository) || ""
         return tags unless repository.class.name == "Repository::Git"
+        return tags unless repository.url.index(/\.git$/).nil?
         myscmbasepath = Setting.plugin_redmine_scm_basepath[:git_path] || ""
         tags.gsub('value=""','').gsub('<input',"<input value=\"#{myscmbasepath}\"")
+        #tags.gsub('value=""','').gsub('<input',"<input value=\"#{myscmbasepath}\"").gsub(/$/,"<!-- #{repository.url.inspect} -->")
       end
 
     end
